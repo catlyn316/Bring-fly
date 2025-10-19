@@ -161,7 +161,21 @@ i7.BorderColor3=c3(0,0,0)
 i7.BorderSizePixel=0 
 i7.Position=u2(0.5,0,0,47) 
 i7.Name=rs() 
-i7.Parent=i3 
+i7.Parent=i3
+
+local closeBtn=i("TextButton")
+closeBtn.AnchorPoint=v2(1,0.5)
+closeBtn.BackgroundColor3=c3(0.266667,0.266667,0.266667)
+closeBtn.BorderColor3=c3(0,0,0)
+closeBtn.BorderSizePixel=0
+closeBtn.Position=u2(1,-8,0,12.5)
+closeBtn.Size=u2(0,20,0,20)
+closeBtn.Font=e.Font.FredokaOne
+closeBtn.TextColor3=c3(1,0.3,0.3)
+closeBtn.Text="X"
+closeBtn.TextSize=16
+closeBtn.Parent=i2
+
 i8.ZIndexBehavior=e.ZIndexBehavior.Sibling 
 i8.Name=rs() 
 
@@ -254,6 +268,17 @@ local function Draggable(window,obj)
 	end
 end
 Draggable(i1)
+
+closeBtn.MouseButton1Click:Connect(function()
+	i1.Visible=not i1.Visible
+end)
+
+uis.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.F6 then
+		i1.Visible=not i1.Visible
+	end
+end)
 
 local others={}
 for i,v in pairs(plrs:GetPlayers()) do
